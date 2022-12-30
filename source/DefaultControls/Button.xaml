@@ -1,0 +1,158 @@
+    <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <Style TargetType="Button">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="1, 1" />
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontFamily" Value="Product Sans Light"/>
+        <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="Button">
+                <Grid>
+                    <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="0,-4,0,0"
+                                   FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter/>
+                    </TextBlock>
+
+                    <Border x:Name="MainBorder" 
+                                BorderThickness="1.5" 
+                                BorderBrush="{DynamicResource SelectionBrush}" 
+                                CornerRadius="18"
+                                Visibility="Collapsed">
+                    </Border>
+
+                    <Border x:Name="BlurBorder" 
+                            BorderThickness="2" 
+                            BorderBrush="{DynamicResource SelectionBrush}" 
+                            CornerRadius="18"
+                            Visibility="Collapsed">
+                        <Border.Effect>
+                            <BlurEffect Radius="13"></BlurEffect>
+                        </Border.Effect>
+                    </Border>
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Opacity" Value="0.5" />
+                    </Trigger>
+                    <Trigger Property="IsFocused" Value="True">
+                        <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                        <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                    </Trigger>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                        <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                        </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+        </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="ButtonEx" BasedOn="{StaticResource {x:Type Button}}">
+    </Style>
+
+    <Style x:Key="PlayAndOptionButton" TargetType="ButtonEx" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="FontSize" Value="46"/>
+        <Setter Property="FontFamily" Value="Product Sans Bold"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontFamily="{TemplateBinding FontFamily}">
+                                <ContentPresenter/>
+                        </TextBlock>
+
+                        <Border x:Name="MainBorder" 
+                                BorderThickness="1.5" 
+                                BorderBrush="{DynamicResource SelectionBrush}" 
+                                CornerRadius="40"
+                                Visibility="Collapsed"
+                                Margin="-6">
+                        </Border>
+
+                        <Border x:Name="BlurBorder" 
+                            BorderThickness="2" 
+                            BorderBrush="{DynamicResource SelectionBrush}" 
+                            CornerRadius="40"
+                            Visibility="Collapsed"
+                            Margin="-6">
+                            <Border.Effect>
+                                <BlurEffect Radius="13"></BlurEffect>
+                            </Border.Effect>
+                        </Border>
+                        <Border x:Name="GlowBorder"
+                                CornerRadius="40"
+                                Margin="-9"
+                                Style="{DynamicResource GlowBorderBaseStyle}" Tag="False">
+                            
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource TextBrushDark}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ClearButton" TargetType="ButtonEx" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="Foreground" Value="#acacac"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter/>
+                        </TextBlock>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

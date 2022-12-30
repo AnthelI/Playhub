@@ -1,0 +1,215 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                    
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    mc:Ignorable="d">
+    <Style TargetType="{x:Type GameDetails}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type GameDetails}">
+                    <Grid
+                          x:Name="PART_ViewHost"
+                          Background="{DynamicResource BackgroundBrush}"
+                          d:DesignWidth="{StaticResource DesignWidth}"
+                          d:DesignHeight="{StaticResource DesignHeight}"
+                          d:DataContext="{x:Static DesignMainViewModel.DesignSelectedGameIntance}"
+                          KeyboardNavigation.DirectionalNavigation="Contained"
+                          KeyboardNavigation.TabNavigation="Cycle"
+                          KeyboardNavigation.ControlTabNavigation="Cycle">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="10*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*" />
+                            <RowDefinition Height="1.5*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="80" />
+                        </Grid.RowDefinitions>
+
+                        <Grid x:Name="BackgroundImage" 
+                              Panel.ZIndex="-50" Grid.RowSpan="5" Grid.ColumnSpan="2" >
+                            <FadeImage Source="{Binding Game.BackgroundImage}"
+                                   RenderOptions.BitmapScalingMode="Fant" 
+                                   Grid.ColumnSpan="4" Grid.RowSpan="5"
+                                   HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                   Stretch="UniformToFill"/>
+
+                            <Border RenderOptions.BitmapScalingMode="Fant" >
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{ThemeFile 'Images/MAIN-OVERLAY.png'}"/>
+                                </Border.Background>
+                            </Border>
+                        </Grid>
+                        <Grid x:Name="BackgroundVideo" 
+                              Panel.ZIndex="-49" Grid.RowSpan="5" Grid.ColumnSpan="2" >
+                            <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound"/>
+                            <Border>
+                                <Border.Background>
+                                    <SolidColorBrush Color="Black" Opacity="0.4"/>
+                                </Border.Background>
+                            </Border>
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=NewContextVideoAvailable}" Value="True"/>
+                                            </MultiDataTrigger.Conditions>
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </MultiDataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                        </Grid>
+
+                        <Image Source="{ThemeFileBinding Source.Name, PathFormat='Icons/Sources/{0}.png'}"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               VerticalAlignment="Top" HorizontalAlignment="Left"
+                               Width="136"
+                               Margin="81,68,0,0" Grid.ColumnSpan="2">
+                        </Image>
+
+
+                        <StackPanel Grid.Column="1" Grid.Row="3"
+                                    Orientation="Horizontal" DockPanel.Dock="Top"
+                                    >
+                            <ButtonEx x:Name="PART_ButtonContext" 
+                                      Style="{DynamicResource PlayAndOptionButton}"
+                                      Width="170" Height="65"
+                                      Margin= "0, 0, 10, 0" >
+                            </ButtonEx>
+
+
+                            <ButtonEx x:Name="PART_ButtonOptions"
+                                      Style="{DynamicResource PlayAndOptionButton}"
+                                      Content="•••"
+                                      Width="90" Height="65" 
+                                      Margin="15, 0, 50, 0"/>
+
+                            <StackPanel VerticalAlignment="Top"
+                                        Margin="-20,35,50,0"
+                                        Tag="{PluginSettings Plugin=SuccessStory, Path=HasData}">
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                                <Label Content="Trophy Progress"
+                                       FontFamily="Product Sans" FontSize="21" Foreground="{DynamicResource TextBrush}" 
+                                       Margin="10,0,5,6"/>
+                                <StackPanel>
+                                    <ProgressBar x:Name="progressBar"
+                                                 FontSize="20" Margin="5,0,0,0"
+                                                 Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue=0}" Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue=0}" 
+                                                 HorizontalAlignment="Left"
+                                                 Background="White" Foreground="{DynamicResource SelectionBrush}" Width="300" Height="3">
+                                    </ProgressBar>
+                                    <ProgressBar x:Name="progressBarBlured"
+                                                 FontSize="20" Margin="5,-3,0,0"
+                                                 Maximum="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue=0}" Value="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue=0}" 
+                                                 HorizontalAlignment="Left"
+                                                 Background="Transparent" Foreground="{DynamicResource SelectionBrush}" Width="300" Height="3">
+                                        <ProgressBar.Effect>
+                                            <BlurEffect Radius="30"/>
+                                        </ProgressBar.Effect>
+                                    </ProgressBar>
+                                    <DockPanel Margin="18,10,18,0" MinWidth="40">
+                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Unlocked, FallbackValue='-'}"  FontFamily="Product Sans Light" FontSize="16" Foreground="{DynamicResource TextBrush}" />
+                                        <TextBlock Text="/"  FontFamily="Product Sans Light" FontSize="16" Foreground="{DynamicResource TextBrush}" />
+                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Total, FallbackValue='-'}"  FontFamily="Product Sans Light" FontSize="16" Foreground="{DynamicResource TextBrush}"/>
+                                        <TextBlock Text=" Earned" FontFamily="Product Sans Light" FontSize="16" Foreground="{DynamicResource TextBrush}"/>
+                                        <TextBlock Text="{PluginSettings Plugin=SuccessStory, Path=Percent, FallbackValue='-', StringFormat='{}{0}%'}"  FontFamily="Product Sans Light" FontSize="16" Foreground="{DynamicResource TextBrush}" HorizontalAlignment="Right"/>
+                                    </DockPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical"
+                                        Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Margin="0,40">
+                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               FontFamily="Product Sans Light"
+                                               Text="{DynamicResource LOCTimePlayed}"
+                                               Margin="0,0,0,1" Height="Auto" FontSize="20"
+                                               VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                           Text="{Binding Playtime, Converter={StaticResource PlayTimeToStringConverter}}" FontFamily="Product Sans Bold" FontWeight="SemiBold" FontSize="35"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                        Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Margin="35,40">
+                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               FontFamily="Product Sans Light"
+                                               Text="{DynamicResource LOCInstallSizeLabel}"
+                                               Margin="0,0,0,1" Height="Auto" FontSize="20"
+                                               VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                           Text="{Binding InstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" FontFamily="Product Sans Bold" FontWeight="SemiBold" FontSize="35"/>
+                            </StackPanel>
+                        </StackPanel>
+
+
+
+
+
+                        
+
+                        <Grid x:Name="LogoGrid"
+                              Grid.Column="1" Grid.Row="1" Width="575" HorizontalAlignment="Left" Margin="0,0,0,35" >
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{PluginSettings Plugin=ExtraMetadataLoader, Path=EnableLogos, FallbackValue=False}" Value="false">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}, FallbackValue=False}" Value="false" >
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Border>
+                                <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                            </Border>
+                            <Image x:Name="GameIcon" 
+                                   Tag="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable}"
+						            Source="{Binding IconObject}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Grid>
+
+                        <ScrollViewerEx Grid.Column="1" Grid.Row="2" DockPanel.Dock="Left"
+                                        x:Name="PART_ScrollHtmlDescription"
+                                        HorizontalAlignment="Left" Margin="0,0,0,10"
+                                        BorderBrush="Transparent">
+                            <HtmlTextView x:Name="PART_HtmlDescription"
+                                                HtmlFontSize="20"
+                                                HtmlForeground="{DynamicResource TextColor}"
+                                                LinkForeground="{DynamicResource AccentForeground}"
+                                                HtmlFontFamily="Product Sans Light"
+                                                FocusVisualStyle="{x:Null}" Width="650"/>
+                        </ScrollViewerEx>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

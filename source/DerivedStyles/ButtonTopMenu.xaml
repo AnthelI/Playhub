@@ -1,0 +1,174 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="ButtonTopMenu" TargetType="Button">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="1, 1" />
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="0,-2,0,0"
+                                   FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter/>
+                        </TextBlock>
+
+                        <Border x:Name="MainBorder" Style="{DynamicResource MainBorderBaseStyle}"
+                                CornerRadius="12">
+                        </Border>
+
+                        <Border x:Name="BlurBorder" Style="{DynamicResource BlurBorderBaseStyle}"
+                            CornerRadius="12">
+                        </Border>
+
+                        <Border x:Name="GlowBorder"
+                                Style="{DynamicResource GlowBorderBaseStyle}" Tag="False"
+                                Margin="9">
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ButtonTopMenuMenu" TargetType="Button">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <TextBlock Text="&#xefa2;" FontFamily="{StaticResource FontIcoFont}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Margin="0,2,0,0"
+                                   Foreground="White" FontSize="30" FontWeight="ExtraLight">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ProfileIcon, Path=ImageSource}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                            <ContentPresenter/>
+                        </TextBlock>
+
+                        <Border x:Name="ImageBorder"
+                                Width="65"
+                                Height="65"
+                                CornerRadius="40">
+                            <Border.Background>
+                                <ImageBrush x:Name="ProfileIcon"                                          
+						                       ImageSource="{ThemeFile 'Images/P_Icon.png'}" 
+                                               Stretch="UniformToFill" 
+                                               RenderOptions.BitmapScalingMode="Fant"/>
+                            </Border.Background>
+                        </Border>
+
+
+                        <Border x:Name="MainBorder">
+                            <Border.Style>
+                                <Style TargetType="Border" BasedOn="{StaticResource MainBorderBaseStyle}">
+                                    <Setter Property="CornerRadius" Value="40"/>
+                                    <Setter Property="Margin" Value="-4"/>
+                                    <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=ProfileIcon, Path=ImageSource}" Value="{x:Null}">
+                                            <Setter Property="CornerRadius" Value="16"/>
+                                            <Setter Property="Margin" Value="10"/>
+                                        </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                        </Border>
+
+                        <Border x:Name="BlurBorder"
+                                BorderThickness="2">
+                            <Border.Effect>
+                                <BlurEffect Radius="10"></BlurEffect>
+                            </Border.Effect>
+                            <Border.Style>
+                                <Style TargetType="Border" BasedOn="{StaticResource BlurBorderBaseStyle}">
+                                    <Setter Property="CornerRadius" Value="40"/>
+                                    <Setter Property="Margin" Value="-4"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ProfileIcon, Path=ImageSource}" Value="{x:Null}">
+                                            <Setter Property="CornerRadius" Value="16"/>
+                                            <Setter Property="Margin" Value="10"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                        <Border x:Name="GlowBorder" Tag="False">
+                            <Border.Style>
+                                <Style TargetType="Border" BasedOn="{StaticResource GlowBorderBaseStyle}">
+                                    <Setter Property="CornerRadius" Value="40"/>
+                                    <Setter Property="Margin" Value="-7"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=ProfileIcon, Path=ImageSource}" Value="{x:Null}">
+                                            <Setter Property="CornerRadius" Value="16"/>
+                                            <Setter Property="Margin" Value="7.5"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" Value="True">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard Name="StartBorderBrush">
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" />
+                                                        <DoubleAnimation Storyboard.TargetProperty="(Border.BorderBrush).(Brush.RelativeTransform).(RotateTransform.Angle)" 
+											                             From="0" To="359" Duration="00:00:2" RepeatBehavior="0.6x" />
+                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                            <DataTrigger.ExitActions>
+                                                <StopStoryboard BeginStoryboardName="StartBorderBrush" />
+                                            </DataTrigger.ExitActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
