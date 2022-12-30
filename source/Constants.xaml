@@ -8,7 +8,7 @@
 
     <Color x:Key="BlackColor">#FF000000</Color>
     <Color x:Key="WhiteColor">#FFFFFFFF</Color>
-    <!--Replace the colors indicated with one of those to change the accent color-->
+    <!--Replace the colors indicated with the other one to change the accent color-->
     <Color x:Key="BlueColor">#FF4790E3</Color> <!--Take the colors from here but don't change them-->
     <Color x:Key="OrangeColor">#FFF1C232</Color>
 
