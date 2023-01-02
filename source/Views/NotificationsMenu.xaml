@@ -2,14 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style x:Key="NotificationsMenuBorder" TargetType="Border">
-        <Setter Property="Margin" Value="-1420,0,-100,0" />
-        <Setter Property="Width" Value="1920" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="Background">
-            <Setter.Value>
-                <ImageBrush ImageSource="{ThemeFile 'Images/OVERLAY.png'}"/>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Margin" Value="0,22"/>
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+        <Setter Property="CornerRadius" Value="15"/>
         <Style.Triggers>
             <EventTrigger RoutedEvent="Window.Loaded">
                 <BeginStoryboard>
@@ -19,18 +14,68 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Style.Triggers>
+
     </Style>
-    <Style x:Key="NotificationsMenuItemButton" BasedOn="{StaticResource {x:Type ButtonEx}}" TargetType="ButtonEx">
-        <Setter Property="Margin" Value="10,5,10,5" />
-        <Setter Property="BorderThickness" Value="2" />
+    <Style x:Key="NotificationsMenuItemButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="ButtonEx">
+        <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="Foreground" Value="#acacac"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter/>
+                        </TextBlock>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     
-    <Style x:Key="NotificationsMenuDismissButton" BasedOn="{StaticResource {x:Type ButtonEx}}" TargetType="ButtonEx">
-        <Setter Property="Margin" Value="10,5,10,20" />
+    <Style x:Key="NotificationsMenuDismissButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="ButtonEx">
+        <Setter Property="Margin" Value="0,4"/>
+        <Setter Property="Foreground" Value="#acacac"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter/>
+                        </TextBlock>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style x:Key="NotificationsMenuHeaderText" BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock" >
-        <Setter Property="FontFamily" Value="{DynamicResource FontTitilliumWebBold}" />
+        <Setter Property="FontFamily" Value="Product Sans" />
         <Setter Property="FontSize" Value="36" />
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="Margin" Value="0,0,20,0" />
