@@ -1,4 +1,4 @@
-AddonId: Playhub
+AddonId: 'Playhub'
 Packages:
   - Version: 1.0.3
     RequiredApiVersion: 2.3.0
