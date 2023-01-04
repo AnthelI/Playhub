@@ -1,0 +1,8 @@
+AddonId: Playhub
+Packages:
+  - Version: 1.0.3
+    RequiredApiVersion: 2.3.0
+    ReleaseDate: 2022-12-30
+    PackageUrl: https://github.com/AnthelI/Playhub/releases/download/1.0.3/Playhub_1_0_3.pthm
+    Changelog:
+      - First public release
