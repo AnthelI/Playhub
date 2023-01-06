@@ -11,6 +11,11 @@
             </Setter.Value>
         </Setter>
         <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" Value="1280">
+                <Setter Property="Margin" Value="-1230,0,-100,0"/>
+                <Setter Property="Width" Value="1735"/>
+            </DataTrigger>
+            
             <EventTrigger RoutedEvent="Window.Loaded">
                 <BeginStoryboard>
                     <Storyboard>
