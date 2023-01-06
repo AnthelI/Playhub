@@ -16,9 +16,8 @@
         </Style.Triggers>
 
     </Style>
-    <Style x:Key="NotificationsMenuItemButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="ButtonEx">
-        <Setter Property="Margin" Value="0,4"/>
-        <Setter Property="Foreground" Value="#acacac"/>
+    <Style x:Key="NotificationsMenuItemButton" TargetType="ButtonEx">
+        <Setter Property="Margin" Value="10,15"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -27,17 +26,48 @@
                                    Foreground="{TemplateBinding Foreground}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   FontSize="{TemplateBinding FontSize}">
+                                   FontSize="{TemplateBinding FontSize}"
+                                   FontFamily="{TemplateBinding FontFamily}">
                                 <ContentPresenter/>
                         </TextBlock>
-                    </Grid>
 
+                        <Border x:Name="MainBorder" 
+                                BorderThickness="1.5" 
+                                BorderBrush="{DynamicResource SelectionBrush}" 
+                                CornerRadius="15"
+                                Visibility="Collapsed"
+                                Margin="0,-8">
+                        </Border>
+
+                        <Border x:Name="BlurBorder" 
+                            BorderThickness="2" 
+                            BorderBrush="{DynamicResource SelectionBrush}" 
+                            CornerRadius="15"
+                            Visibility="Collapsed"
+                            Margin="0,-8">
+                            <Border.Effect>
+                                <BlurEffect Radius="13"></BlurEffect>
+                            </Border.Effect>
+                        </Border>
+                        <Border x:Name="GlowBorder"
+                                CornerRadius="15"
+                                Margin="0,-11"
+                                Style="{DynamicResource GlowBorderBaseStyle}" Tag="False">
+
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrush}"/>
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -77,7 +107,7 @@
     <Style x:Key="NotificationsMenuHeaderText" BasedOn="{StaticResource TextBlockBaseStyle}" TargetType="TextBlock" >
         <Setter Property="FontFamily" Value="Product Sans" />
         <Setter Property="FontSize" Value="36" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="Margin" Value="0,0,20,0" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="0,0,50,0" />
     </Style>
 </ResourceDictionary>

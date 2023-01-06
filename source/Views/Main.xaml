@@ -17,6 +17,29 @@
                           d:DesignHeight="{StaticResource DesignHeight}"
                           d:DataContext="{x:Static DesignMainViewModel.DesignIntance}">
 
+                        <Grid x:Name="IntroVideo" Panel.ZIndex="99">
+                            <MediaElement Source="{ThemeFile 'Videos/IntroVideo.mp4'}" SnapsToDevicePixels="True" >
+                                <MediaElement.Style>
+                                    <Style TargetType="MediaElement">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <EventTrigger RoutedEvent="MediaElement.MediaEnded">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1" FillBehavior="HoldEnd"/>
+                                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                                            <DiscreteObjectKeyFrame KeyTime="00:00:00" Value="{x:Static Visibility.Visible}"/>
+                                                            <DiscreteObjectKeyFrame KeyTime="00:00:0.5" Value="{x:Static Visibility.Collapsed}"/>
+                                                        </ObjectAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </MediaElement.Style>
+                            </MediaElement>
+                            
+                        </Grid>
 
                         <Grid x:Name="PART_ViewHost" Background="{DynamicResource BackgroundBrush}">
                             <Grid.RowDefinitions>
@@ -127,7 +150,7 @@
                                           Margin="10,31" Height="48" MinWidth="48"
                                           Grid.Column="6" Grid.ColumnSpan="2">
                                     <ButtonEx.Style>
-                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonTopMenu}">
+                                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonTopMenuNotification}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Api Notifications.Count}" Value="0">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
