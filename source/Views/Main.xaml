@@ -3,7 +3,10 @@
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                     xmlns:Windows="clr-namespace:Playnite.FullscreenApp.Windows;assembly=Playnite.FullscreenApp" 
+                    xmlns:Converters="clr-namespace:Playnite.Converters;assembly=Playnite" 
                     mc:Ignorable="d">
+
+    <Converters:ObjectEqualityToBoolConverter x:Key="ObjectEqualityToBoolConverter"/>
 
     <Style TargetType="{x:Type Main}">
         <Setter Property="Template">
@@ -293,8 +296,8 @@
                                     <ContentControl x:Name="ExtraMetadataLoader_LogoLoaderControl" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                                 </Border>
                                 <Image x:Name="GameIcon" 
-                                   Tag="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable}"
-						            Source="{Binding SelectedGame.IconObject}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                                       Tag="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable}"
+						               Source="{Binding SelectedGame.IconObject}" VerticalAlignment="Bottom" HorizontalAlignment="Left">
                                     <Image.Style>
                                         <Style TargetType="{x:Type Image}">
                                             <Setter Property="Visibility" Value="Visible" />
@@ -302,10 +305,35 @@
                                                 <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
                                                     <Setter Property="Visibility" Value="Collapsed" />
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Settings Fullscreen.ShowGameTitles}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </Image.Style>
                                 </Image>
+                                <TextBlock Text="{Binding SelectedGame.Name, Mode=OneWay}"
+                                           Tag="{PluginSettings Plugin=ExtraMetadataLoader, Path=IsLogoAvailable}"
+                                           FontFamily="Product Sans" FontSize="50" FontWeight="SemiBold" Foreground="{DynamicResource TextBrush}"
+                                           TextWrapping="Wrap" Margin="0,0,0,15"
+                                           HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SnapsToDevicePixels="True">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource Self}}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Visibility, ElementName=GameIcon}" Value="Visible">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding SelectedGame.Icon, Converter={StaticResource StringNullOrEmptyToBoolConverter}, Mode=OneWay}" Value="False">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                             </Grid>
                         </Grid>
 
