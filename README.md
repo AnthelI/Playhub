@@ -7,6 +7,15 @@ Playhub is a modern fullscreen theme for Playnite
 
 ![MainMenu](https://github.com/AnthelI/Playhub/raw/main/Media/MainMenu.jpg)
 
+### Settings:
+#### In the layout section
+* Horizontal Scrolling: Enable
+* Columns: 7
+* Item spacing: 55
+
 ### Supported Plugins:
 * SuccessStory
 * Extra Metadata Loader
+
+### Credit:
+* Huge thanks to Andrea Sgarro (ZazaMastro) for all the designs
