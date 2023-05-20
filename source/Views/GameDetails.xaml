@@ -34,9 +34,19 @@
                                    RenderOptions.BitmapScalingMode="Fant" 
                                    Grid.ColumnSpan="4" Grid.RowSpan="5"
                                    HorizontalAlignment="Center" VerticalAlignment="Top" 
-                                   Stretch="UniformToFill"/>
+                                   Stretch="UniformToFill">
+                                <FadeImage.Style>
+                                    <Style TargetType="{x:Type FadeImage}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Settings Fullscreen.EnableMainBackgroundImage}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </FadeImage.Style>
+                            </FadeImage>
 
-                            <Border RenderOptions.BitmapScalingMode="Fant" >
+                                <Border RenderOptions.BitmapScalingMode="Fant" >
                                 <Border.Background>
                                     <ImageBrush ImageSource="{ThemeFile 'Images/MAIN-OVERLAY.png'}"/>
                                 </Border.Background>
@@ -44,7 +54,7 @@
                         </Grid>
                         <Grid x:Name="BackgroundVideo" 
                               Panel.ZIndex="-49" Grid.RowSpan="5" Grid.ColumnSpan="2" >
-                            <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_NoSound"/>
+                            <ContentControl x:Name="ExtraMetadataLoader_VideoLoaderControl_NoControls_Sound"/>
                             <Border>
                                 <Border.Background>
                                     <SolidColorBrush Color="Black" Opacity="0.4"/>
@@ -155,11 +165,6 @@
                             </StackPanel>
                         </StackPanel>
 
-
-
-
-
-                        
 
                         <Grid x:Name="LogoGrid"
                               Grid.Column="1" Grid.Row="1" Width="575" HorizontalAlignment="Left" Margin="0,0,0,35" >
