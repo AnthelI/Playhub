@@ -18,7 +18,7 @@ Playhub is a modern fullscreen theme for Playnite
 * Extra Metadata Loader
 
 ### Customization
-* Head to the Constant.xaml file
+* Head to the Constants.xaml file
 
 ### Credits:
 * Huge thanks to Andrea Sgarro (ZazaMastro) for all the designs
