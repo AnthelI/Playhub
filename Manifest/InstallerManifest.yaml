@@ -6,3 +6,12 @@ Packages:
     PackageUrl: https://github.com/AnthelI/Playhub/releases/download/1.0.3/Playhub_1_0_3.pthm
     Changelog:
       - First public release
+  - Version: 1.1
+    RequiredApiVersion: 2.3.0
+    ReleaseDate: 2023-05-20
+    PackageUrl: https://github.com/AnthelI/Playhub/releases/download/1.1/Playhub_1_1.pthm
+    Changelog:
+     - Added the option to use the title of the game if no logo is available (it's the icon of the game by default)
+     - The title of the game will be use if neither a logo or an icon are available for the game
+     - Fix the button to select notifications
+     - Fix a width issue with the settings page for the steam deck resolution
