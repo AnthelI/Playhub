@@ -15,6 +15,7 @@ Playhub is a modern fullscreen theme for Playnite
 
 ### Supported Plugins:
 * SuccessStory
+* HowLongToBeat
 * Extra Metadata Loader
 
 ### Customization
