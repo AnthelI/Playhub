@@ -4,7 +4,7 @@
     <Style x:Key="MessageBoxBorder" TargetType="Border">
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Color="#484649"/>
+                <SolidColorBrush Color="{DynamicResource BackgroundColor}"/>
             </Setter.Value>
         </Setter>
         <Setter Property="CornerRadius" Value="15" />
@@ -23,7 +23,7 @@
 
     <Style x:Key="MessageBoxButton" BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
         <Setter Property="Margin" Value="0,0,15,0"/>
-        <Setter Property="Foreground" Value="#acacac"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextColorDark}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
