@@ -16,7 +16,7 @@ Packages:
      - Fix the button to select notifications
      - Fix a width issue with the settings page for the steam deck resolution
   - Version: 1.1.1
-    RequiredApiVersion: 2.4.0
+    RequiredApiVersion: 2.3.0
     ReleaseDate: 2023-05-20
     PackageUrl: https://github.com/AnthelI/Playhub/releases/download/1.1.1/Playhub_1_1_1.pthm
     Changelog:
