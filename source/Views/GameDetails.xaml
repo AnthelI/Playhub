@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                    
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     mc:Ignorable="d">
     <Style TargetType="{x:Type GameDetails}">
         <Setter Property="Template">
@@ -154,14 +155,38 @@
                             </StackPanel>
                             <StackPanel Orientation="Vertical"
                                         Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top"
-                                        Margin="35,40">
+                                        Margin="35,40,0,40">
                                 <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                               FontFamily="Product Sans Light"
+                                               Text="How Long To Beat"
+                                               Margin="0,0,0,1" Height="Auto" FontSize="20"
+                                               VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                                <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                           Text="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat}" 
+                                           FontFamily="Product Sans Bold" FontWeight="SemiBold" FontSize="35"
+                                           HorizontalAlignment="Left"/>
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{PluginSettings Plugin=HowLongToBeat, Path=MainExtraFormat, FallbackValue={x:Null}}" Value="--">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical"
+                                        Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                        Margin="35,40,0,40">
+                            <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
                                                FontFamily="Product Sans Light"
                                                Text="{DynamicResource LOCInstallSizeLabel}"
                                                Margin="0,0,0,1" Height="Auto" FontSize="20"
                                                VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
                                 <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
-                                           Text="{Binding InstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" FontFamily="Product Sans Bold" FontWeight="SemiBold" FontSize="35"/>
+                                           Text="{Binding InstallSize, Converter={StaticResource NullableUlongBytesSizeToStringConverter}}" 
+                                           FontFamily="Product Sans Bold" FontWeight="SemiBold" FontSize="35"/>
                             </StackPanel>
                         </StackPanel>
 
