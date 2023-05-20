@@ -3,17 +3,17 @@
 
     <Style x:Key="SettingsMenuBorder" TargetType="Border">
         <Setter Property="Margin" Value="-1420,0,-100,0" />
-        <Setter Property="Width" Value="1920" />
-        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Width" Value="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" />
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Background">
             <Setter.Value>
                 <ImageBrush ImageSource="{ThemeFile 'Images/OVERLAY.png'}"/>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" Value="1280">
+            <DataTrigger Binding="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}" Value="1080">
                 <Setter Property="Margin" Value="-1230,0,-100,0"/>
-                <Setter Property="Width" Value="1735"/>
+                <Setter Property="Width" Value="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}}"/>
             </DataTrigger>
             
             <EventTrigger RoutedEvent="Window.Loaded">
