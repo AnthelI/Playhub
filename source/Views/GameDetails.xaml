@@ -46,7 +46,7 @@
                                 </FadeImage.Style>
                             </FadeImage>
 
-                                <Border RenderOptions.BitmapScalingMode="Fant" >
+                            <Border RenderOptions.BitmapScalingMode="Fant" >
                                 <Border.Background>
                                     <ImageBrush ImageSource="{ThemeFile 'Images/MAIN-OVERLAY.png'}"/>
                                 </Border.Background>
