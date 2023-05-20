@@ -24,3 +24,10 @@ Packages:
      - Hide by default the controller button prompt indication
      - The background image of the game view will now respect the settings
      - Fix the download button
+  - Version: 1.1.2
+    RequiredApiVersion: 2.3.0
+    ReleaseDate: 2023-05-20
+    PackageUrl: https://github.com/AnthelI/Playhub/releases/download/1.1.2/Playhub_1_1_2.pthm
+    Changelog:
+     - Add basic support for HLTB plugin
+     - The background can now be blurred and darkened via the settings
