@@ -222,4 +222,55 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="ButtonTopMenuDownload" TargetType="Button">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="1, 1" />
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <TextBlock Style="{DynamicResource TextBlockBaseStyle}"
+                                   Foreground="{TemplateBinding Foreground}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="0,-2,0,0"
+                                   FontSize="{TemplateBinding FontSize}">
+                                <ContentPresenter/>
+                        </TextBlock>
+
+                        <Border x:Name="MainBorder" Style="{DynamicResource MainBorderBaseStyle}"
+                                CornerRadius="12">
+                        </Border>
+
+                        <Border x:Name="BlurBorder" Style="{DynamicResource BlurBorderBaseStyle}"
+                            CornerRadius="12">
+                        </Border>
+
+                        <Border x:Name="GlowBorder"
+                                Style="{DynamicResource GlowBorderBaseStyle}" Tag="False"
+                                CornerRadius="12" Margin="-3">
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Visibility" Value="Visible" TargetName="MainBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="BlurBorder" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="GlowBorder" />
+                            <Setter Property="Tag" Value="True" TargetName="GlowBorder" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
