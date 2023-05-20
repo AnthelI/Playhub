@@ -28,7 +28,7 @@
                             <RowDefinition Height="80" />
                         </Grid.RowDefinitions>
 
-                        <Grid x:Name="BackgroundImage" 
+                        <Grid x:Name="PART_ImageBackground" 
                               Panel.ZIndex="-50" Grid.RowSpan="5" Grid.ColumnSpan="2" >
                             <FadeImage Source="{Binding Game.BackgroundImage}"
                                    RenderOptions.BitmapScalingMode="Fant" 
