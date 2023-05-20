@@ -47,7 +47,7 @@
 
 
 
-                            <FadeImage x:Name="BackgroundImage"
+                            <FadeImage x:Name="PART_ImageBackground"
                                        Source="{Binding SelectedGame.DisplayBackgroundImageObject}"
                                        RenderOptions.BitmapScalingMode="Fant" 
                                        Grid.RowSpan="3"
